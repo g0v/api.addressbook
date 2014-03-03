@@ -1,11 +1,10 @@
-require fs
+require! fs
+require! pgrest
 
-export bootstrap(plx, done)
-  require! pgrest
+export function bootstrap(plx, done)
   <- plx.query pgrest.util.define-schema \pgrest "pgrest schema"
-
   sql <- fs.readFile \../sql
   <- plx.query sql
-  
-	<- pgrest.bootstrap plx, \who require.resolve \../package.json
-	done!
+
+  <- pgrest.bootstrap plx, \who require.resolve \../package.json
+  done!
