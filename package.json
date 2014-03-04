@@ -21,6 +21,12 @@
   "engines": {
     "node": "*"
   },
+  "Dependencies": {
+    "fscache": "0.0.1",
+    "async": "0.2.x",
+    "optimist": "0.4.x",
+    "pgrest": "git://github.com/pgrest/pgrest.git"
+  },
   "devDependencies": {
     "mocha": "1.14.x",
     "supertest": "0.7.x",
