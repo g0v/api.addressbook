@@ -5,14 +5,14 @@ export function bootstrap(plx, done)
   <- plx.query pgrest.util.define-schema \pgrest "pgrest schema"
   <- plx.query """
   CREATE TABLE IF NOT EXISTS organizations (
-    id integer PRIMARY KEY,
+    id serial PRIMARY KEY,
     name text,
     other_names json,
     identifiers json,
-    classification json,
+    classification text,
     parent_id integer,
-    founding_date date,
-    dissolutions_date date,
+    founding_date text,
+    dissolutions_date text,
     image text,
     contact_details json,
     links json
