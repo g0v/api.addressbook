@@ -56,6 +56,15 @@ execute "boot api.addressbook" do
   subscribes :run, "execute[install api.addressbook]", :immediately
 end
 
+bash 'init db' do
+  cwd "/opt/addressbook/api.addressbook/cookbooks/addressbook.g0v.tw"
+  code <<-EOH
+    cat addressbook.sql | psql -v 'session_replication_role=replica' #{conn}
+  EOH
+  action :nothing
+  subscribes :run, resources(:postgresql_database_user => 'addressbook')
+end
+
 runit_service "addressbookapi" do
   default_logger true
   action [:enable, :start]
