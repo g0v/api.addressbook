@@ -1,0 +1,28 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+$script = <<SCRIPT
+sudo sed -i -r 's#http://(.*?archive|security)\.ubuntu\.com/ubuntu#http://tw.archive.ubuntu.com/ubuntu#g' /etc/apt/sources.list
+sudo apt-get update
+which chef-solo || (curl -L https://www.opscode.com/chef/install.sh | sudo bash)
+SCRIPT
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu-precise64"
+  config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
+  config.vm.network :forwarded_port, host: 6988, guest: 80
+  config.vm.synced_folder "../../..", "/vagrant_git"
+  config.cache.auto_detect = true
+  config.berkshelf.enabled = true
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ["modifyvm", :id, "--memory", "1024"]
+  end
+  config.vm.provision "shell", inline: $script
+  config.vm.provision :chef_solo do |chef|
+    chef.data_bags_path = "data_bags"
+    chef.add_recipe 'pgrest'
+    chef.add_recipe 'addressbook.g0v.tw::apiserver'
+
+    chef.json.merge!(JSON.parse(File.read("./dna.json")))  
+  end
+end

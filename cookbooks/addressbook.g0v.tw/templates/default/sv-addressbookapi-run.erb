@@ -1,0 +1,2 @@
+#!/bin/bash -e
+exec lsc /opt/addressbook/api.addressbook/app.ls --db tcp://addressbook:password@localhost/addressbook --host 0.0.0.0 --prefix /v0/collections --schema pgrest --cors

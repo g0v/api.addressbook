@@ -1,0 +1,12 @@
+site :opscode
+
+cookbook 'postgresql', github: 'hw-cookbooks/postgresql', tag: 'v3.3.4'
+cookbook 'git'
+cookbook 'runit', github: 'clkao-cookbooks/runit', ref: 'runit-create'
+cookbook 'python'
+cookbook 'pgrest', github: 'clkao-cookbooks/pgrest'
+cookbook 'nodejs', github: 'mdxp/nodejs-cookbook'
+cookbook 'addressbook.g0v.tw', path: '.'
+cookbook 'database', github: 'clkao-cookbooks/database'
+cookbook 'cron'
+cookbook 'nginx', github: 'clkao-cookbooks/nginx'
