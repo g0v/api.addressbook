@@ -19,10 +19,6 @@ Vagrant.configure("2") do |config|
   end
   config.vm.provision "shell", inline: $script
   config.vm.provision :chef_solo do |chef|
-    chef.data_bags_path = "data_bags"
-    chef.add_recipe 'pgrest'
-    chef.add_recipe 'addressbook.g0v.tw::apiserver'
-
     chef.json.merge!(JSON.parse(File.read("./dna.json")))  
   end
 end
