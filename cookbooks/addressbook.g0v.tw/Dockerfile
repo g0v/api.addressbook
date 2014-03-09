@@ -10,7 +10,6 @@ EXPOSE 22
 # Expose Nginx Proxy
 EXPOSE 80
 
-# Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
 
 # Use Taiwan mirror.
@@ -22,9 +21,8 @@ RUN /opt/chef/embedded/bin/gem install --no-ri --no-rdoc berkshelf
 
 ADD . /chef
 RUN cd /chef && /opt/chef/embedded/bin/berks install --path /chef/chef-cookbooks
-RUN chef-solo -c /chef/solo.rb -j /chef/dna.json &
-
+RUN chef-solo -c /chef/solo.rb -j /chef/dna.json 
 
 # Postgresql isnt managed by runit, so we need start in boot.
 RUN echo '#!/bin/sh\n/etc/init.d/postgresql start' >> /etc/my_init.d/01_start_postgresql.sh
-RUN chmo 755 /etc/
+RUN chmod 755 /etc/my_init/01_start_postgresql.sh
