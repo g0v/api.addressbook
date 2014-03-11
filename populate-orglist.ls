@@ -8,7 +8,8 @@ orglist = require require.resolve input
 
 _orgcode_map = {}
 for e in orglist
-  _orgcode_map[e.identifiers.0.identifier] = e.name
+  if e.identifiers?
+      _orgcode_map[e.identifiers.0.identifier] = e.name
 
 plx <- cli.plx {+client}
 update-entries = (data, record_info, next) ->
@@ -20,7 +21,7 @@ update-entries = (data, record_info, next) ->
   err, res <- async.series funcs
   next!
 
-<- update-entries orglist, -> it.name
+#<- update-entries orglist, -> it.name
 console.log "inserted organizations entries from orglist to postgresql."
 
 missing-parents = []
