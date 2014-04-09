@@ -2,6 +2,8 @@
 
 api.addressbook.g0v.tw endpoint source and utiltity scripts.
 
+demo site: [http://pgrest.io/hychen/api.addressbook/v0/collections/](http://pgrest.io/hychen/api.addressbook/v0/collections/)
+
 ## Installation 
 
 Install Postgresql 9.3 in your laptop and the run the following instructions:
