@@ -69,7 +69,7 @@ $ make boot && make build
 $ git clone https://github.com/g0v/api.addressbook
 $ cd api.addressbook
 $ npm i
-$ lsc app.ls --db mydb
+$ lsc app.ls --db mydb --schema pgrest
 info: Available collections:
 memberships organizations person posts
 info: Serving `mydb` on http://127.0.0.1:3000/collections
