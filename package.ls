@@ -22,7 +22,7 @@ scripts:
     if [ ! -e ./lib ]; then npm i LiveScript; lsc -bc -o lib src; fi
   """
 engines: {node: '*'}
-Dependencies:
+dependencies:
   fscache: \0.0.1
   async: \0.2.x
   optimist: \0.4.x
