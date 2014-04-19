@@ -3,5 +3,5 @@ export meta = do
 		as: 'public.organizations'
 	'pgrest.person': do
 		as: 'public.person'
-	'pgrest.organizations': do
+	'pgrest.memberships': do
 		as: 'public.memberships'
