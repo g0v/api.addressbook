@@ -58,7 +58,7 @@ The default database is `mydb`.
 
 ```
 $ git clone https://github.com/g0v/addressbook-data-converter
-$ cd g0v/addressbook-data-converter
+$ cd addressbook-data-converter
 $ npm i 
 $ make boot && make build
 ```
